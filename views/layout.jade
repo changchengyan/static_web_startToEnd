@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    if (showTests)
+      link(rel='stylesheet',href='/vender/mocha.css')
+    script(src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js")
+
+  body
+    header
+      img(src='images/baidu.gif',alt='一张图片')
+    block content
+    if (showTests)
+      #mocha
+      script(src='/vender/mocha.js')
+      script(src='/vender/chai.js')
+      script.
+        mocha.ui('tdd')
+        let assert=chai.assert
+      script(src="/qa/tests-global.js")
+      if (pageTestScript)
+        script(src=''+(pageTestScript))
+      script.
+        mocha.run()
+
+
